@@ -5,7 +5,7 @@ $(document).ready(function () {
         if(this.id == 'clear')
             inputBox.val('');
         else
-            inputBox.val(inputBox.val() + this.innerText);
+            inputBox.val(inputBox.val() + this.innerText.replace('x', ''));
     });
     function pressEnter() {
         try {
