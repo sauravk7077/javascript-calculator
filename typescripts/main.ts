@@ -1,14 +1,15 @@
 $(document).ready(function () {
-    let input:HTMLInputElement = $('#inputData').get(0);
+    let inputBox = $('#inputData')
+    inputBox.val('');
     $('.numBtn, .btn').click(function (e) {
         if(this.id == 'clear')
-            input.value = '';
+            inputBox.val('');
         else
-            input.value += this.innerText.replace('x²', '²');
+            inputBox.val(inputBox.val() + this.innerText);
     });
     function pressEnter() {
         try {
-            let data = input.value;
+            let data = inputBox.val();
             data = data.replace('×', '*').replace('÷', '/').replace('(', '*(');
             let regex = /([1-9])+\²/g;
             let p = data.match(regex);
@@ -18,9 +19,8 @@ $(document).ready(function () {
                 data = data.replace(a, `Math.pow(${chars}, 2)`);
             }}
             let answer = eval(data);
-            console.log(data);
             if (answer != undefined)
-                input.value = answer;
+                inputBox.val(answer);
         }
         catch (error) { }
     }
@@ -29,7 +29,7 @@ $(document).ready(function () {
         let reg = /([0-9*/\*+-\/\(\)\.])+/g;
         try{
             if(e.key.match(reg).length > 0){
-                input.value += e.key;
+                inputBox.val(inputBox.val() + e.key);
             }
         }
         catch(error){}
@@ -37,7 +37,7 @@ $(document).ready(function () {
             pressEnter();
         }
         if(e.keyCode == 8) {
-            input.value = input.value.substring(0,input.value.length-1);
+            inputBox.val(inputBox.val().substring(0,inputBox.val().length-1));
         }
     })
 });
