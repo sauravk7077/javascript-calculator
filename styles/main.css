@@ -4,11 +4,11 @@
 }
 body{
   background: #1E1E24;
+  overflow: hidden;
 }
 #calculator{
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .row{
@@ -17,7 +17,6 @@ body{
     flex-wrap: wrap;
     max-width: 350px;
     justify-content: center;
-    margin: auto;
     border-radius: 10px;
     flex-direction: row-reverse;
 }
